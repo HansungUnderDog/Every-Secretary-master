@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="8dip"
             style="@style/TextAppearance.EditEvent_LabelSmall" />
-        <cse.underdog.org.underdog_client.ex.chips.RecipientEditTextView
+        <com.android.ex.chips.RecipientEditTextView
             android:id="@+id/attendees"
             android:layout_marginTop="2dip"
             android:layout_width="match_parent"

@@ -94,17 +94,6 @@
         <activity android:name=".speech.SttActivity"
             android:screenOrientation="portrait"/>
 
-        <receiver android:name=".alarm.AlarmReceiver" />
-        <receiver android:name=".alarm.CallAlarmReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE"/>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".weather.WeatherSyncAlarmReceiver" />
-
-        <service android:name=".weather.WeatherSyncService" />
-        <service android:name=".alarm.CallingService" />
 
         <activity
             android:name="cse.underdog.org.underdog_client.AllInOneActivity"
@@ -127,10 +116,10 @@
             </intent-filter>
         </activity>
 
-        <activity-alias android:name="cse.underdog.org.underdog_client.LaunchActivity"
+        <!--<activity-alias android:name="cse.underdog.org.underdog_client.LaunchActivity"
             android:exported="true"
             android:targetActivity="cse.underdog.org.underdog_client.AllInOneActivity">
-        </activity-alias>
+        </activity-alias>-->
 
         <activity android:name="cse.underdog.org.underdog_client.EventInfoActivity"
             android:parentActivityName="cse.underdog.org.underdog_client.AllInOneActivity">
