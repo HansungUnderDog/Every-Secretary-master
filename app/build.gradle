@@ -1,0 +1,249 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+project(':external:calendar') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:colorpicker') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+        }
+    }
+}
+
+project(':external:datetimepicker') {
+    apply plugin: 'android-library'
+
+    dependencies {
+        compile 'com.android.support:support-v4:25.3.1'
+    }
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:timezonepicker') {
+    apply plugin: 'android-library'
+
+    dependencies {
+        compile 'com.android.support:support-v4:25.3.1'
+    }
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+            }
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:chips') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+        }
+
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "cse.underdog.org.underdog_client"
+        minSdkVersion 20
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "FORECAST_IO_API_KEY", "\"97b232a76771e4bd5fcd985da278ac0d\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    if (project.hasProperty('signingStoreLocation') &&
+            project.hasProperty('signingStorePassword') &&
+            project.hasProperty('signingKeyAlias') &&
+            project.hasProperty('signingKeyPassword')) {
+        println "Found sign properties in gradle.properties! Signing build…"
+
+        signingConfigs {
+            release {
+                storeFile file(signingStoreLocation)
+                storePassword signingStorePassword
+                keyAlias signingKeyAlias
+                keyPassword signingKeyPassword
+            }
+        }
+
+        buildTypes.release.signingConfig = signingConfigs.release
+    } else {
+        buildTypes.release.signingConfig = null
+    }
+
+    lintOptions {
+        disable 'RestrictedApi'
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.0.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.0.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation files('libs/YouTubeAndroidPlayerApi-1.2.2/libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'com.google.apis:google-api-services-youtube:v3-rev178-1.22.0'
+    implementation 'com.pm10:indicator:1.0.2'
+    implementation project(':jsoup-1.11.3')
+    implementation 'com.github.quivr:android-week-view:2.0.2'
+    implementation project(':external:calendar')
+    implementation project(':external:chips')
+    implementation project(':external:colorpicker')
+    implementation project(':external:datetimepicker')
+    implementation project(':external:timezonepicker')
+}

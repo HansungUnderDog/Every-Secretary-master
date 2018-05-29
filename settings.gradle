@@ -1,0 +1,7 @@
+include ':app', ':jsoup-1.11.3'
+include ':external:calendar'
+include ':external:colorpicker'
+include ':external:datetimepicker'
+include ':external:timezonepicker'
+include ':external:chips'
+

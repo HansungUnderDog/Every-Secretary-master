@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
+    <com.pm10.library.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        p_gap="4dp"
+        p_radius="4dp"
+        p_strokeWidth="1dp"
+        p_defaultColor="@color/white"
+        p_selectedColor="@color/black"
+        p_strokeColor="@color/gray"/>
+
+
+</RelativeLayout>

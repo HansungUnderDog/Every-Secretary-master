@@ -1,0 +1,89 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF9C8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.widget.DrawerLayout
+                android:id="@+id/drawer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:id="@+id/coordinator_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".MainActivity">
+
+                    <android.support.design.widget.AppBarLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:showIn="@layout/activity_memo">
+
+                        <android.support.v7.widget.Toolbar
+                            android:id="@+id/toolbarMemoCreate"
+                            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                            android:background="?attr/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                        </android.support.v7.widget.Toolbar>
+
+                    </android.support.design.widget.AppBarLayout>
+
+                </android.support.design.widget.CoordinatorLayout>
+            </android.support.v4.widget.DrawerLayout>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editText_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="59dp"
+                android:lines="5"
+                android:maxLength="140"
+                android:nestedScrollingEnabled="false"
+                android:singleLine="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/bottomBar"
+            android:layout_alignParentBottom="true">
+
+            <android.support.design.widget.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bottomNavView_Bar"
+                android:background="@drawable/white_grey_border_top"
+                app:menu="@menu/bottom_navigation_menu">
+
+
+            </android.support.design.widget.BottomNavigationView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,33 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:1-26:12
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:1-26:12
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:1-26:12
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:1-26:12
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:1-26:12
+	package
+		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:17:11-41
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:16:11-69
+	android:versionCode
+		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:18:11-34
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+uses-sdk
+ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:20:5-22:41
+	android:targetSdkVersion
+		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:22:9-38
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:21:9-35
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml
+application
+ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\chips\AndroidManifest.xml:24:5-20

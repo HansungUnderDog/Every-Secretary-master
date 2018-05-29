@@ -1,0 +1,67 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF9C8">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/coordinator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+                <android.support.design.widget.AppBarLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:showIn="@layout/activity_memo">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbarMemoEdit"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                        android:background="?attr/colorPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.AppBarLayout>
+
+            </android.support.design.widget.CoordinatorLayout>
+        </android.support.v4.widget.DrawerLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView5" >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/description"
+                android:layout_below="@+id/txttitle"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:singleLine="false"
+                android:lines="5" />
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

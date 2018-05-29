@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cse.underdog.org.underdog_client">
+
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.mail" />
+
+    <application
+        android:name=".application.ApplicationController"
+        android:hardwareAccelerated="true"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/CalendarAppTheme"
+        android:requiredAccountType="*"
+        android:usesCleartextTraffic="false"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.SignupActivity"
+            android:label="signup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TabActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".etc.EtcActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".timeline.TimelineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".memo.MemoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".login.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".memo.CreateNote"
+            android:label="@string/title_activity_create_note"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".memo.View_Note"
+            android:label="@string/title_activity_information"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".memo.Edit_Note"
+            android:label="@string/title_activity_edit__note"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.MainActivity_2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".guide.GuideActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".speech.SttActivity"
+            android:screenOrientation="portrait"/>
+
+        <receiver android:name=".alarm.AlarmReceiver" />
+        <receiver android:name=".alarm.CallAlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".weather.WeatherSyncAlarmReceiver" />
+
+        <service android:name=".weather.WeatherSyncService" />
+        <service android:name=".alarm.CallingService" />
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.AllInOneActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/CalendarTheme.WithoutActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_CALENDAR" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="time/epoch" />
+                <data android:host="cse.underdog.org.underdog_client" />
+                <data android:scheme="content"/>
+            </intent-filter>
+        </activity>
+
+        <activity-alias android:name="cse.underdog.org.underdog_client.LaunchActivity"
+            android:exported="true"
+            android:targetActivity="cse.underdog.org.underdog_client.AllInOneActivity">
+        </activity-alias>
+
+        <activity android:name="cse.underdog.org.underdog_client.EventInfoActivity"
+            android:parentActivityName="cse.underdog.org.underdog_client.AllInOneActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/event" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="cse.underdog.org.underdog_client.AllInOneActivity" />
+        </activity>
+
+        <activity android:name="cse.underdog.org.underdog_client.event.EditEventActivity"
+            android:theme="@style/Base.CalendarAppThemeWithActionBar">
+        </activity>
+
+        <activity-alias android:name="cse.underdog.org.underdog_client.EditEventActivity"
+            android:exported="true"
+            android:targetActivity="cse.underdog.org.underdog_client.event.EditEventActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.INSERT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/event" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.INSERT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/event" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.GoogleCalendarUriIntentFilter"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_label"
+            android:theme="@android:style/Theme.NoDisplay">
+
+            <intent-filter
+                android:priority="50">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.google.com"
+                    android:pathPrefix="/calendar/event"
+                    android:scheme="http" />
+                <data
+                    android:host="www.google.com"
+                    android:pathPrefix="/calendar/event"
+                    android:scheme="https" />
+                <data
+                    android:host="www.google.com"
+                    android:pathPattern="/calendar/hosted/.*/event"
+                    android:scheme="http" />
+                <data
+                    android:host="www.google.com"
+                    android:pathPattern="/calendar/hosted/.*/event"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="cse.underdog.org.underdog_client.selectcalendars.SelectVisibleCalendarsActivity"
+            android:label="@string/select_visible_calendars_title"
+            android:theme="@style/Base.CalendarAppThemeWithActionBar" />
+
+        <activity android:name="cse.underdog.org.underdog_client.selectcalendars.SelectSyncedCalendarsMultiAccountActivity"
+            android:label="@string/select_synced_calendars_title"
+            android:theme="@style/Base.CalendarAppThemeWithActionBar" />
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.CalendarSettingsActivity"
+            android:label="@string/preferences_title"
+            android:parentActivityName="cse.underdog.org.underdog_client.AllInOneActivity" />
+
+        <!-- Declarations for search -->
+        <!-- Make all activities a searchable context -->
+        <meta-data android:name="android.app.default_searchable"
+            android:value="cse.underdog.org.underdog_client.SearchActivity"/>
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.SearchActivity"
+            android:exported="true"
+            android:label="@string/search_title"
+            android:launchMode="singleTop"
+            android:theme="@style/CalendarTheme.WithActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+        </activity>
+
+        <activity android:name="cse.underdog.org.underdog_client.ImportActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="text/x-vcalendar" />
+                <data android:mimeType="text/calendar" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+        <!--<provider android:name="com.android.calendar.CalendarRecentSuggestionsProvider"
+            android:exported="false"
+            android:authorities="com.android.calendar.CalendarRecentSuggestionsProvider" />-->
+
+        <!-- Declarations for alerts/reminders -->
+        <activity
+            android:name="cse.underdog.org.underdog_client.alerts.AlertActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.alerts.QuickResponseActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/quick_response_dialog_title"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+
+        <activity
+            android:name="cse.underdog.org.underdog_client.alerts.SnoozeDelayActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+
+        <receiver android:name="cse.underdog.org.underdog_client.alerts.AlertReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.EVENT_REMINDER" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <data android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <data android:scheme="content"/>
+                <data android:host="cse.underdog.org.underdog_client"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="cse.underdog.org.underdog_client.alerts.GlobalDismissManager"
+            android:exported="false" />
+
+        <service android:name="cse.underdog.org.underdog_client.alerts.AlertService" />
+
+        <service android:name="cse.underdog.org.underdog_client.alerts.DismissAlarmsService" />
+
+        <service android:name="cse.underdog.org.underdog_client.alerts.SnoozeAlarmsService" />
+
+        <service android:name="cse.underdog.org.underdog_client.alerts.InitAlarmsService" />
+
+        <!-- Declarations for the widget -->
+        <receiver android:name="cse.underdog.org.underdog_client.widget.CalendarAppWidgetProvider" android:label="@string/gadget_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="cse.underdog.org.underdog_client.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_info" />
+        </receiver>
+
+        <receiver android:name="cse.underdog.org.underdog_client.widget.CalendarAppWidgetService$CalendarFactory">
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <data android:scheme="content"/>
+                <data android:host="cse.underdog.org.underdog_client"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="cse.underdog.org.underdog_client.APPWIDGET_SCHEDULED_UPDATE"/>
+                <data android:scheme="content"/>
+                <data android:host="cse.underdog.org.underdog_client"/>
+                <data android:mimeType="vnd.android.data/update" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="cse.underdog.org.underdog_client.widget.CalendarAppWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
+
+        <service android:name="cse.underdog.org.underdog_client.AsyncQueryServiceHelper" />
+
+
+    </application>
+
+</manifest>
