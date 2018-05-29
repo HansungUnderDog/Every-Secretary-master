@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +32,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import cse.underdog.org.underdog_client.AllInOneActivity;
+import cse.underdog.org.underdog_client.BottomNavigationViewBehavior;
 import cse.underdog.org.underdog_client.BottomNavigationViewHelper;
 import cse.underdog.org.underdog_client.R;
 import cse.underdog.org.underdog_client.TTSData;
@@ -160,6 +162,8 @@ public class TimelineActivity extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);

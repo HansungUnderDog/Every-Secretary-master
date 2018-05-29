@@ -52,6 +52,7 @@ import android.provider.CalendarContract.Calendars;
 import android.provider.CalendarContract.Events;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -260,6 +261,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
         if (Utils.getSharedPreference(this, OtherPreferences.KEY_OTHER_1, false)) {
             setTheme(R.style.CalendarTheme_WithActionBarWallpaper);
         }
+        overridePendingTransition(0, 0);
         super.onCreate(icicle);
         dynamicTheme.onCreate(this);
 
@@ -396,6 +398,8 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
         mContentResolver = getContentResolver();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);

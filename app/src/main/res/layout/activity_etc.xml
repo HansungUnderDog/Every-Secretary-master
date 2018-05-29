@@ -1,65 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-
     <RelativeLayout
+        android:id="@+id/etcLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/etcLayout">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
-            <Button
+
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="검색"
-                android:id="@+id/searchBtn"/>
+                android:layout_marginBottom="221dp"
+                android:layout_marginEnd="105dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                app:srcCompat="@drawable/search_btn" />
 
-            <Button
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="음악"
-                android:id="@+id/musicBtn"/>
+                android:layout_marginBottom="221dp"
+                android:layout_marginStart="105dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:srcCompat="@drawable/memo_btn" />
 
-            <Button
-                android:id="@+id/goBtn1"
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go1" />
+                android:layout_marginEnd="64dp"
+                android:layout_marginTop="172dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/schedule_btn" />
 
-            <Button
-                android:id="@+id/goBtn2"
+            <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go2" />
-        </LinearLayout>
+                android:layout_marginTop="172dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/weather_btn" />
 
-        <RelativeLayout
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="172dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/music_btn" />
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/bottomBar"
             android:layout_alignParentBottom="true">
 
             <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottomNavView_Bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/bottomNavView_Bar"
                 android:background="@drawable/white_grey_border_top"
-                app:menu="@menu/bottom_navigation_menu">
+                app:menu="@menu/bottom_navigation_menu"></android.support.design.widget.BottomNavigationView>
 
-
-            </android.support.design.widget.BottomNavigationView>
-        </RelativeLayout>
-
+        </android.support.design.widget.CoordinatorLayout>
 
 
     </RelativeLayout>

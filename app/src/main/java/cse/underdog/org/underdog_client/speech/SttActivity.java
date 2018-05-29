@@ -1,6 +1,7 @@
 package cse.underdog.org.underdog_client.speech;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.speech.RecognitionListener;
@@ -63,7 +64,7 @@ public class SttActivity extends AppCompatActivity implements RecognitionListene
                 if (isChecked) {
                     progressBar.setVisibility(View.VISIBLE);
                     progressBar.setIndeterminate(true);
-                      ActivityCompat.requestPermissions
+                    ActivityCompat.requestPermissions
                             (SttActivity.this,
                                     new String[]{Manifest.permission.RECORD_AUDIO},
                                     REQUEST_RECORD_PERMISSION);
@@ -167,6 +168,9 @@ public class SttActivity extends AppCompatActivity implements RecognitionListene
         returnedText.setText(text);
 //        Intent intent = new Intent(this, TimelineActivity.class);
 //        startActivity(intent);
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",RESULT);
+        setResult(Activity.RESULT_OK,returnIntent);
         finish();
 
     }

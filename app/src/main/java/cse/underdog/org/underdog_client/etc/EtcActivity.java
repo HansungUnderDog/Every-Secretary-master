@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.api.services.youtube.YouTube;
@@ -30,6 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cse.underdog.org.underdog_client.AllInOneActivity;
+import cse.underdog.org.underdog_client.BottomNavigationViewBehavior;
 import cse.underdog.org.underdog_client.BottomNavigationViewHelper;
 import cse.underdog.org.underdog_client.R;
 import cse.underdog.org.underdog_client.memo.MemoActivity;
@@ -40,23 +44,27 @@ import cse.underdog.org.underdog_client.timeline.TimelineActivity;
 public class EtcActivity extends AppCompatActivity{
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
+    private Thread th;
+    private Thread th2;
 
     private String youtubeAddress = null;
     String result;
-    SttService stt;
     String search;
 
-    @BindView(R.id.searchBtn)
-    Button searchButton;
+    @BindView(R.id.imageView5)
+    ImageView searchButton;
 
-    @BindView(R.id.musicBtn)
-    Button musicButton;
+    @BindView(R.id.imageView)
+    ImageView musicButton;
 
-    @BindView(R.id.goBtn1)
-    Button goButton1;
+    @BindView(R.id.imageView4)
+    ImageView memoButton;
 
-    @BindView(R.id.goBtn2)
-    Button goButton2;
+    @BindView(R.id.imageView2)
+    ImageView weatherButton;
+
+    @BindView(R.id.imageView3)
+    ImageView scheduleButton;
 
 
 
@@ -77,79 +85,75 @@ public class EtcActivity extends AppCompatActivity{
 
         ButterKnife.bind(this);
         sttIntent = new Intent(this, SttActivity.class);
-
-        stt = new SttService();
+        search = "";
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(sttIntent, 100);
+                th2 = new Thread(new Runnable() {
+                    @Override
+                    synchronized public void run() {
+                        startActivityForResult(sttIntent, 200);
+                        try {
+                            Log.e("쓰레드안wait전","쓰레드안wait전");
+                            wait();
+                            Log.e("쓰레드안wait후후","쓰레드안wait후후");
+                        } catch (InterruptedException e) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("search", search);
+                            Fragment searchFragment = new SearchFragment();
+                            searchFragment = new SearchFragment();
+                            searchFragment.setArguments(bundle);
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.etcLayout, searchFragment, searchFragment.getClass().getSimpleName()).addToBackStack(null).commit();
+                        }
+                    }
+                });
+                th2.start();
             }
         });
 
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(stt.getIntent(), stt.getREQ());
-            }
-        });
-
-
-        goButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //View search = getLayoutInflater().inflate(R.layout.fragment_etc, null);
-
-
-                Bundle bundle = new Bundle();
-                bundle.putString("search", search);
-                Fragment searchFragment = new SearchFragment();
-                searchFragment = new SearchFragment();
-                searchFragment.setArguments(bundle);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.etcLayout, searchFragment, searchFragment.getClass().getSimpleName()).addToBackStack(null).commit();
-            }
-        });
-
-        goButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //View search = getLayoutInflater().inflate(R.layout.fragment_etc, null);
-
-                new Thread(){
-                    public void run(){
-                        System.out.println("쓰레드안에서 유튜브위");
+                th = new Thread(new Runnable() {
+                    @Override
+                    synchronized public void run() {
+                        startActivityForResult(sttIntent, 100);
                         try {
-                            System.out.println("쓰레드 안에서 유튜브 어드레으 실행됨?");
-                            youtubeAddress = getAddress();
-                            Bundle bundle = new Bundle();
-                            System.out.println("서치에서위" + youtubeAddress);
-                            bundle.putString("search", youtubeAddress);
-                            System.out.println("서치에서아래" + youtubeAddress);
-                            Fragment musicFragment = new MusicFragment();
-                            musicFragment = new MusicFragment();
-                            musicFragment.setArguments(bundle);
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.etcLayout, musicFragment, musicFragment.getClass().getSimpleName()).addToBackStack(null).commit();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.e("쓰레드안wait전","쓰레드안wait전");
+                            wait();
+                            Log.e("쓰레드안wait후후","쓰레드안wait후후");
+                        } catch (InterruptedException e) {
+                            try {
+                                youtubeAddress = getAddress();
+                                Bundle bundle = new Bundle();
+                                System.out.println("서치에서위" + youtubeAddress);
+                                bundle.putString("search", youtubeAddress);
+                                System.out.println("서치에서아래" + youtubeAddress);
+                                Fragment musicFragment = new MusicFragment();
+                                musicFragment = new MusicFragment();
+                                musicFragment.setArguments(bundle);
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.etcLayout, musicFragment, musicFragment.getClass().getSimpleName()).addToBackStack(null).commit();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            } catch (JSONException e1) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("유튜브 주소" + youtubeAddress);
                         }
-                        System.out.println("쓰레드안에서 유튜브아래");
-                        System.out.println("유튜브 주소" + youtubeAddress);
                     }
-                }.start();
-                System.out.println("쓰레드 아래에서");
-
-
-
+                });
+                th.start();
             }
         });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
@@ -194,26 +198,14 @@ public class EtcActivity extends AppCompatActivity{
 
         System.out.println("url까지실행됨?" + url);
 
-        /*Jsoup.connect(url)
-                .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
-                .get();*/
-
         Document doc = Jsoup.connect(url).ignoreHttpErrors(true).ignoreContentType(true).timeout(10 * 1000).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
         System.out.println("DOC까진실행됨?");
         String getJson = doc.text();
         System.out.println("제이슨이다"+getJson);
         JSONObject jsonObject = (JSONObject) new JSONTokener(getJson ).nextValue();
-        /*System.out.println("제이슨 오브젝트다" + jsonObject);
-        System.out.println("제이슨 오브젝트 아래에서는 찎힘?" + jsonObject.getJSONObject("items").getJSONObject("id").getString("videoId"));
-        address=jsonObject.getJSONObject("items").getJSONObject("id").getString("videoId");*/
 
         List<String> list = new ArrayList<String>();
         JSONArray array = jsonObject.getJSONArray("items");
-        /*for(int i = 0 ; i < array.length() ; i++){
-            list.add(array.getJSONObject(i).getString("contentDetails"));
-            address = array.getJSONObject(i).getJSONObject("contentDetails").getJSONObject("id").getString("videoId");
-            System.out.println("비디오아이디" + i + " " + address);
-        }*/
         address = array.getJSONObject(0).getJSONObject("id").getString("videoId");
         System.out.println("비디오아이디" + address);
 
@@ -222,48 +214,60 @@ public class EtcActivity extends AppCompatActivity{
         return address;
     }
 
-    /*private String getSHA1(String packageName){
-        try {
-            Signature[] signatures = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures;
-            for (Signature signature: signatures) {
-                MessageDigest md;
-                md = MessageDigest.getInstance("SHA-1");
-                md.update(signature.toByteArray());
-                return BaseEncoding.base16().encode(md.digest());
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        result = SttActivity.RESULT;
-        //int count=0;
-        //String search="";
-        if(result.contains("검색")){
-            /*String tmp[] = result.split("");
-            for(int i=0; i<tmp.length; i++){
-                search+=tmp[i];
-                if(tmp[i].equals("검색")||tmp[i].equals("검색해")){
-                    System.out.println("브렉문"+search);
-                    break;
+        if (requestCode == 100) {
+            Log.e("inActivityResult", "in requestCode");
+            if (resultCode != RESULT_CANCELED) {
+                Log.e("inActivityResult", "in resultCode");
+                result = data.getStringExtra("result");
+                Log.e("dataResult", result);
+                if (result.contains("검색")) {
+                    int idx = result.indexOf("검색");
+                    System.out.println("인덱" + idx);
+                    search = result.substring(0, idx);
+                    System.out.println("서치" + search);
+                    th.interrupt();
+                } else {       }
+            } else {
+                Log.e("inActivityResult", "in resultCode error");
+                result = data.getStringExtra("result");
+                Log.e("dataResult", result);
+                if (result.contains("검색")) {
+                    int idx = result.indexOf("검색");
+                    System.out.println("인덱" + idx);
+                    search = result.substring(0, idx);
+                    System.out.println("서치" + search);
+                    th.interrupt();
                 }
-                System.out.println("포문"+search);
             }
-            System.out.println("이프"+search);*/
-            int idx = result.indexOf("검색");
-            System.out.println("인덱"+idx);
-            search = result.substring(0, idx);
-            System.out.println("서치" + search);
-        }else{
-            //System.out.println("엘스"+search);
+        } else Log.e("inActivityResult", "in requestCode error");
+
+        if (requestCode == 200) {
+            if(resultCode != RESULT_CANCELED) {
+                result = data.getStringExtra("result");
+                if (result.contains("검색")) {
+                    int idx = result.indexOf("검색");
+                    System.out.println("인덱" + idx);
+                    search = result.substring(0, idx);
+                    System.out.println("서치" + search);
+                    th2.interrupt();
+                } else {       }
+            } else {
+                result = data.getStringExtra("result");
+                if (result.contains("검색")) {
+                    int idx = result.indexOf("검색");
+                    System.out.println("인덱" + idx);
+                    search = result.substring(0, idx);
+                    System.out.println("서치" + search);
+                    th2.interrupt();
+                }
+            }
         }
+
     }
+
     public void onBackPressed() {
 
 
@@ -271,7 +275,7 @@ public class EtcActivity extends AppCompatActivity{
         long intervalTime = tempTime - backPressedTime;
 
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            Intent intent = new Intent(this, TimelineActivity.class);
+            Intent intent = new Intent(this, AllInOneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

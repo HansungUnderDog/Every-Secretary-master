@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import cse.underdog.org.underdog_client.AllInOneActivity;
+import cse.underdog.org.underdog_client.BottomNavigationViewBehavior;
 import cse.underdog.org.underdog_client.BottomNavigationViewHelper;
 import cse.underdog.org.underdog_client.R;
 import cse.underdog.org.underdog_client.application.ApplicationController;
@@ -52,6 +54,8 @@ public class MemoActivity extends AppCompatActivity {
         service = ApplicationController.getInstance().getNetworkService();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(2);
@@ -193,7 +197,7 @@ public class MemoActivity extends AppCompatActivity {
         long intervalTime = tempTime - backPressedTime;
 
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            Intent intent = new Intent(this, TimelineActivity.class);
+            Intent intent = new Intent(this, AllInOneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
