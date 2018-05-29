@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:1-23:12
 	package
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:17:5-38
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:17:5-38
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:19:5-30
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:19:5-30
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:16:11-69
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:16:11-69
 	android:versionCode
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:18:5-28
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:18:5-28
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
 uses-sdk
-ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:20:5-22:41
+ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:20:5-22:41
 	android:targetSdkVersion
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:22:9-38
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:22:9-38
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml:21:9-35
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\colorpicker\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml:21:9-35
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\colorpicker\AndroidManifest.xml

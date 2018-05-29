@@ -1,31 +1,31 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:1-19:12
+ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:1-19:12
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:1-19:12
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:1-19:12
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:1-19:12
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:1-19:12
 	package
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:17:11-48
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:17:11-48
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:16:11-69
+		ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:16:11-69
 	android:versionCode
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml:18:11-34
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml:18:11-34
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
 uses-sdk
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		ADDED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
-		INJECTED from C:\Users\_miu_minu\Desktop\Every-Secretary-master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		ADDED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml
+		INJECTED from D:\underdog_clinet_master\external\calendar\AndroidManifest.xml

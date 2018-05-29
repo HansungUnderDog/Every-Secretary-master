@@ -94,17 +94,15 @@
         <activity android:name=".speech.SttActivity"
             android:screenOrientation="portrait"/>
 
-        <receiver android:name=".alarm.AlarmReceiver" />
+        <!--<receiver android:name=".alarm.AlarmReceiver" />
         <receiver android:name=".alarm.CallAlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".weather.WeatherSyncAlarmReceiver" />
 
-        <service android:name=".weather.WeatherSyncService" />
-        <service android:name=".alarm.CallingService" />
+        <service android:name=".alarm.CallingService" />-->
 
         <activity
             android:name="cse.underdog.org.underdog_client.AllInOneActivity"
