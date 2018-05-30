@@ -1482,6 +1482,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
             try {
                 // If the query didn't return a cursor for some reason return
                 if (cursor == null || cursor.getCount() > 0 || isFinishing()) {
+                    Log.i(TAG, "");
                     return;
                 }
             } finally {
