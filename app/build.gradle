@@ -239,7 +239,7 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi-1.2.2/libs/YouTubeAndroidPlayerApi.jar')
     implementation 'com.google.apis:google-api-services-youtube:v3-rev178-1.22.0'
     implementation 'com.pm10:indicator:1.0.2'
-    implementation 'com.github.quivr:android-week-view:2.0.2'
+    implementation (name: 'pocketsphinx-android-5prealpha-release', ext: 'aar')
     implementation project(':external:calendar')
     implementation project(':external:chips')
     implementation project(':external:colorpicker')
