@@ -1498,7 +1498,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 // If the query didn't return a cursor for some reason return
                 if (cursor == null || cursor.getCount() > 0 || isFinishing()) {
                     Log.i(TAG, "");
-                    Log.e("커리컴플릿", String.valueOf(cursor.getColumnNames()));
                     return;
                 }
             } finally {

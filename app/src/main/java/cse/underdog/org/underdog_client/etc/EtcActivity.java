@@ -1,9 +1,13 @@
 package cse.underdog.org.underdog_client.etc;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -103,16 +107,25 @@ public class EtcActivity extends AppCompatActivity{
     private static final String PROPERTIES_FILENAME = "youtube.properties";
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 1;
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 123;
 
     private static YouTube youtube;
 
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         overridePendingTransition(0, 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_etc);
+
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.e("퍼미션받아옴","ㄱㄱ");
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},
+                    MY_PERMISSIONS_REQUEST_CALL_PHONE);
+        }
 
         ButterKnife.bind(this);
         sttIntent = new Intent(this, SttActivity.class);
@@ -294,7 +307,7 @@ public class EtcActivity extends AppCompatActivity{
                     System.out.println("서치" + search);
                     th.interrupt();
                 } else {       }
-            } else {
+            } /*else {
                 Log.e("inActivityResult", "in resultCode error");
                 result = data.getStringExtra("result");
                 Log.e("dataResult", result);
@@ -305,8 +318,8 @@ public class EtcActivity extends AppCompatActivity{
                     System.out.println("서치" + search);
                     th.interrupt();
                 }
-            }
-        } else Log.e("inActivityResult", "in requestCode error");
+            }*/
+        } // else Log.e("inActivityResult", "in requestCode error");
 
         if (requestCode == 200) {
             if(resultCode != RESULT_CANCELED) {
@@ -319,14 +332,14 @@ public class EtcActivity extends AppCompatActivity{
                     th2.interrupt();
                 } else {       }
             } else {
-                result = data.getStringExtra("result");
+                /*result = data.getStringExtra("result");
                 if (result.contains("검색")) {
                     int idx = result.indexOf("검색");
                     System.out.println("인덱" + idx);
                     search = result.substring(0, idx);
                     System.out.println("서치" + search);
                     th2.interrupt();
-                }
+                }*/
             }
         }
 

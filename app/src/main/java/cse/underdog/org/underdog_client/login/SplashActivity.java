@@ -1,8 +1,10 @@
 package cse.underdog.org.underdog_client.login;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -34,14 +36,43 @@ public class SplashActivity extends AppCompatActivity {
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
     public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 5469;
+    public static int  MY_PERMISSIONS_REQUEST_CALL_PHONE = 3379;
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.e("퍼미션받아옴","ㄱㄱ");
+            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE},
+                    MY_PERMISSIONS_REQUEST_CALL_PHONE);
+        } else Log.e("퍼미션else","실행");
 
-        testPermission();
+
+        if (!Settings.canDrawOverlays(this)) {
+            testPermission();
+        } else {
+            Log.e("스플래쉬Result","서비스 실행");
+            handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    SharedPreferences userInfo;
+                    userInfo = getSharedPreferences("users", MODE_PRIVATE);
+                    String remainEmail = userInfo.getString("email", null);
+                    if (remainEmail == null) {
+                        Intent mintent = new Intent(getBaseContext(), GuideActivity.class); //LoginActivity 로 다시 바꿔야함
+                        startActivity(mintent);
+                        finish();
+                    } else {
+                        checkLogin(remainEmail, userInfo.getString("pwd", null));
+                    }
+                }
+            };
+
+            handler.sendEmptyMessageDelayed(0, 3000);
+        }
 
         service = ApplicationController.getInstance().getNetworkService();
 
@@ -55,22 +86,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_DISPLAY_LENGTH);*/
 
-        handler = new Handler() {
-            public void handleMessage(Message msg) {
-                SharedPreferences userInfo;
-                userInfo = getSharedPreferences("users", MODE_PRIVATE);
-                String remainEmail = userInfo.getString("email", null);
-                if (remainEmail == null) {
-                    Intent mintent = new Intent(getBaseContext(), GuideActivity.class); //LoginActivity 로 다시 바꿔야함
-                    startActivity(mintent);
-                    finish();
-                } else {
-                    checkLogin(remainEmail, userInfo.getString("pwd", null));
-                }
-            }
-        };
 
-        handler.sendEmptyMessageDelayed(0, 3000);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -156,10 +172,22 @@ public class SplashActivity extends AppCompatActivity {
         if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
             if (Settings.canDrawOverlays(this)) {
                 // You have permission
-                Intent serviceIntent = new Intent(
-                        getApplicationContext(),//현재제어권자
-                        CallingService.class); // 이동할 컴포넌트
-                startService(serviceIntent);
+                handler = new Handler() {
+                    public void handleMessage(Message msg) {
+                        SharedPreferences userInfo;
+                        userInfo = getSharedPreferences("users", MODE_PRIVATE);
+                        String remainEmail = userInfo.getString("email", null);
+                        if (remainEmail == null) {
+                            Intent mintent = new Intent(getBaseContext(), GuideActivity.class); //LoginActivity 로 다시 바꿔야함
+                            startActivity(mintent);
+                            finish();
+                        } else {
+                            checkLogin(remainEmail, userInfo.getString("pwd", null));
+                        }
+                    }
+                };
+
+                handler.sendEmptyMessageDelayed(0, 3000);
             }
         }
     }

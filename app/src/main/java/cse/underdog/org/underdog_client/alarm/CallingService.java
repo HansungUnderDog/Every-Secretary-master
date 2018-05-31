@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -24,6 +25,8 @@ public class CallingService extends Service{
     //@InjectView(R.id.tv_call_number)
     @BindView(R.id.tv_call_number)
     TextView tv_call_number;
+    @BindView(R.id.btn_close)
+    ImageButton btn_close;
     String call_number;
     WindowManager.LayoutParams params;
     private WindowManager windowManager;
@@ -37,6 +40,7 @@ public class CallingService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("서비스객체", "객체 생성");
 
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
@@ -59,6 +63,12 @@ public class CallingService extends Service{
         //ButterKnife.inject(this, rootView);
         rootView = layoutInflater.inflate(R.layout.call_popup_top, null);
         ButterKnife.bind(this, rootView);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removePopup();
+            }
+        });
         setDraggable();
     }
 

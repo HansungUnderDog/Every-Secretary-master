@@ -64,13 +64,13 @@ public class SttActivity extends AppCompatActivity implements RecognitionListene
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
                 if (isChecked) {
-                    progressBar.setVisibility(View.VISIBLE);
+                    /*progressBar.setVisibility(View.VISIBLE);
                     progressBar.setIndeterminate(true);
                     ActivityCompat.requestPermissions
                             (SttActivity.this,
                                     new String[]{Manifest.permission.RECORD_AUDIO},
-                                    REQUEST_RECORD_PERMISSION);
-//                    speech.startListening(recognizerIntent);
+                                    REQUEST_RECORD_PERMISSION);*/
+                    speech.startListening(recognizerIntent);
                 } else {
                     progressBar.setIndeterminate(false);
                     progressBar.setVisibility(View.INVISIBLE);
