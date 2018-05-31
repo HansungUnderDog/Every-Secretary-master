@@ -3,8 +3,10 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentCoor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -63,21 +65,25 @@
         </android.support.v4.widget.DrawerLayout>
 
 
-        <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/bottomBar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true">
-
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/bottomNavView_Bar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/white_grey_border_top"
-                app:menu="@menu/bottom_navigation_menu"></android.support.design.widget.BottomNavigationView>
-
-        </android.support.design.widget.CoordinatorLayout>
-
     </RelativeLayout>
+
+    <!--<android.support.design.widget.CoordinatorLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:fadeScrollbars="false">-->
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavView_Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/white_grey_border_top"
+        app:layout_behavior=".BottomNavigationBehavior"
+        app:menu="@menu/bottom_navigation_menu"></android.support.design.widget.BottomNavigationView>
+
+    <!--</android.support.design.widget.CoordinatorLayout>-->
 
 </android.support.design.widget.CoordinatorLayout>
