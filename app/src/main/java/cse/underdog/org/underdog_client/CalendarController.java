@@ -213,6 +213,7 @@ public class CalendarController {
         info.eventTitle = title;
         info.calendarId = calendarId;
         this.sendEvent(sender, info);
+
     }
 
     /**

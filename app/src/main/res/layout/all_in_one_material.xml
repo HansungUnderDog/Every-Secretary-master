@@ -45,7 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_marginBottom="60dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/ic_add_event"
                     app:borderWidth="0dp"
                     app:layout_anchorGravity="bottom|right" />

@@ -1152,6 +1152,8 @@ public class EditEventHelper {
             model.mCalendarAllowedAvailability = cursor
                     .getString(CALENDARS_INDEX_ALLOWED_AVAILABILITY);
 
+
+
             return true;
        }
        return false;

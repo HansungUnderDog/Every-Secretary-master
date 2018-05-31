@@ -1,7 +1,9 @@
 package cse.underdog.org.underdog_client.etc;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.api.services.youtube.YouTube;
@@ -27,7 +30,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,9 +42,13 @@ import cse.underdog.org.underdog_client.AllInOneActivity;
 import cse.underdog.org.underdog_client.BottomNavigationViewBehavior;
 import cse.underdog.org.underdog_client.BottomNavigationViewHelper;
 import cse.underdog.org.underdog_client.R;
+import cse.underdog.org.underdog_client.TTSData;
+import cse.underdog.org.underdog_client.location_GPS.Gps;
 import cse.underdog.org.underdog_client.memo.MemoActivity;
+import cse.underdog.org.underdog_client.network.NetworkService;
 import cse.underdog.org.underdog_client.speech.SttActivity;
 import cse.underdog.org.underdog_client.speech.SttService;
+import cse.underdog.org.underdog_client.speech.TtsService;
 import cse.underdog.org.underdog_client.timeline.TimelineActivity;
 
 public class EtcActivity extends AppCompatActivity{
@@ -46,6 +56,28 @@ public class EtcActivity extends AppCompatActivity{
     private long backPressedTime = 0;
     private Thread th;
     private Thread th2;
+    private Gps gps;
+    private SttService stt;
+    private TtsService tts;
+    private Button sttBtn;
+    private Button ttsBtn;
+    private Button gpsBtn;
+    private Button alarmBtn;
+    private TextView tv;
+    private Context context;
+
+    private TextView txtLat;
+    private TextView txtLon;
+    private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
+    private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
+    private boolean isAccessFineLocation = false;
+    private boolean isAccessCoarseLocation = false;
+    private boolean isPermission = false;
+    private NetworkService service;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private Intent sttIntent;
+
 
     private String youtubeAddress = null;
     String result;
@@ -73,7 +105,6 @@ public class EtcActivity extends AppCompatActivity{
     private static final long NUMBER_OF_VIDEOS_RETURNED = 1;
 
     private static YouTube youtube;
-    private Intent sttIntent;
 
 
 
@@ -87,7 +118,37 @@ public class EtcActivity extends AppCompatActivity{
         sttIntent = new Intent(this, SttActivity.class);
         search = "";
 
+        context = this.getApplicationContext();
+        tts = new TtsService(context);
+
         searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                th2 = new Thread(new Runnable() {
+                    @Override
+                    synchronized public void run() {
+                        startActivityForResult(sttIntent, 200);
+                        try {
+                            Log.e("쓰레드안wait전","쓰레드안wait전");
+                            wait();
+                            Log.e("쓰레드안wait후후","쓰레드안wait후후");
+                        } catch (InterruptedException e) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("search", search);
+                            Fragment searchFragment = new SearchFragment();
+                            searchFragment = new SearchFragment();
+                            searchFragment.setArguments(bundle);
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.etcLayout, searchFragment, searchFragment.getClass().getSimpleName()).addToBackStack(null).commit();
+                        }
+                    }
+                });
+                th2.start();
+            }
+        });
+
+        weatherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 th2 = new Thread(new Runnable() {
@@ -151,22 +212,25 @@ public class EtcActivity extends AppCompatActivity{
             }
         });
 
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tts.ttsStart("오늘의 일정은 오전 9시부터 11시까지 소프트웨어의 이해 수업을, 오후 2시부터 5시에 캡스톤 디자인 졸업 전시회가 예정 되어 있습니다.");
+            }
+        });
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(3);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_android:
-                        Intent intent1 = new Intent(EtcActivity.this, TimelineActivity.class);
-                        startActivity(intent1);
-                        break;
 
                     case R.id.ic_books:
                         Intent intent2 = new Intent(EtcActivity.this, AllInOneActivity.class);

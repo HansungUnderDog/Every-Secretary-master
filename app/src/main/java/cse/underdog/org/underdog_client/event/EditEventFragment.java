@@ -271,6 +271,8 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
             }
             mHandler.startQuery(TOKEN_EVENT, null, mUri, EditEventHelper.EVENT_PROJECTION,
                     null /* selection */, null /* selection args */, null /* sort order */);
+            //ContentResolver cr = getContentResolver();
+            //Cursor c = cr.query(mUri, EditEventHelper.EVENT_PROJECTION, null, null);
         } else {
             mOutstandingQueries = TOKEN_CALENDARS | TOKEN_COLORS;
             if (DEBUG) {
@@ -435,13 +437,16 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                 } else {
                     mOnDone.setDoneCode(Utils.DONE_REVERT);
                     mOnDone.run();
+                    Log.e("제발1", mModel.mTitle.toString());
                 }
             } else if (EditEventHelper.canAddReminders(mModel) && mModel.mId != -1
                     && mOriginalModel != null && mView.prepareForSave()) {
                 saveReminders();
+                Log.e("제발2", mModel.mTitle.toString());
                 mOnDone.setDoneCode(Utils.DONE_EXIT);
                 mOnDone.run();
             } else {
+                Log.e("제발3", mModel.mTitle.toString());
                 mOnDone.setDoneCode(Utils.DONE_REVERT);
                 mOnDone.run();
             }
@@ -674,6 +679,16 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                 return;
             }
             long eventId;
+
+            Log.e("에딧이벤트프래그먼트 갯수위에",String.valueOf(cursor.getCount()).toString());
+            Log.e("에딧이벤트프래그먼트0",String.valueOf(cursor.getColumnName(0)).toString());
+            Log.e("에딧이벤트프래그먼트1",String.valueOf(cursor.getColumnName(1)).toString());
+            Log.e("에딧이벤트프래그먼트2",String.valueOf(cursor.getColumnName(2)).toString());
+            Log.e("에딧이벤트프래그먼트3",String.valueOf(cursor.getColumnName(3)).toString());
+            //Log.e("에딧이벤트프래그먼트4",String.valueOf(cursor.getColumnName(4)).toString());
+            //Log.e("에딧이벤트프래그먼트5",String.valueOf(cursor.getColumnName(5)).toString());
+
+            //cursor.get
             switch (token) {
                 case TOKEN_EVENT:
                     if (cursor.getCount() == 0) {
@@ -688,7 +703,19 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                     mOriginalModel = new CalendarEventModel();
                     EditEventHelper.setModelFromCursor(mOriginalModel, cursor);
                     EditEventHelper.setModelFromCursor(mModel, cursor);
+
+                    Log.e("에딧이벤트프래그먼트 갯수",String.valueOf(cursor.getCount()).toString());
+                    Log.e("에딧이벤트프래그먼트0",String.valueOf(cursor.getColumnName(0)).toString());
+                    Log.e("에딧이벤트프래그먼트1",String.valueOf(cursor.getColumnName(1)).toString());
+                    Log.e("에딧이벤트프래그먼트2",String.valueOf(cursor.getColumnName(2)).toString());
+                    Log.e("에딧이벤트프래그먼트3",String.valueOf(cursor.getColumnName(3)).toString());
+                    Log.e("에딧이벤트프래그먼트4",String.valueOf(cursor.getColumnName(4)).toString());
+                    Log.e("에딧이벤트프래그먼트5",String.valueOf(cursor.getColumnName(5)).toString());
+
+
+                    Log.e("모델 타이틀 커서 위에" , mModel.mTitle.toString());
                     cursor.close();
+                    Log.e("모델 타이틀 커서 아래" , mModel.mTitle.toString());
 
                     mOriginalModel.mUri = mUri.toString();
 
@@ -702,6 +729,8 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                         mModel.setEventColor(mEventColor);
                     }
                     eventId = mModel.mId;
+
+                    Log.e("모델 타이틀" , mModel.mTitle.toString());
 
                     // TOKEN_ATTENDEES
                     if (mModel.mHasAttendeeData && eventId != -1) {
@@ -754,6 +783,9 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                             Colors.COLOR_TYPE + "=" + Colors.TYPE_EVENT, null, null);
 
                     setModelIfDone(TOKEN_EVENT);
+
+
+
                     break;
                 case TOKEN_ATTENDEES:
                     try {
@@ -817,6 +849,14 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                             mOriginalModel.mReminders.add(re);
                         }
 
+                        Log.e("에딧리마인더 갯수",String.valueOf(cursor.getCount()).toString());
+                        Log.e("에딧이벤트프래그먼트0",String.valueOf(cursor.getColumnName(0)).toString());
+                        Log.e("에딧이벤트프래그먼트1",String.valueOf(cursor.getColumnName(1)).toString());
+                        Log.e("에딧이벤트프래그먼트2",String.valueOf(cursor.getColumnName(2)).toString());
+                        Log.e("에딧이벤트프래그먼트3",String.valueOf(cursor.getColumnName(3)).toString());
+                        Log.e("에딧이벤트프래그먼트4",String.valueOf(cursor.getColumnName(4)).toString());
+                        Log.e("에딧이벤트프래그먼트5",String.valueOf(cursor.getColumnName(5)).toString());
+
                         // Sort appropriately for display
                         Collections.sort(mModel.mReminders);
                         Collections.sort(mOriginalModel.mReminders);
@@ -845,6 +885,15 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                     } finally {
                         cursor.close();
                     }
+
+                    /*Log.e("에딧캘린더 갯수",String.valueOf(cursor.getCount()).toString());
+                    Log.e("에딧이벤트프래그먼트0",String.valueOf(cursor.getColumnName(0)).toString());
+                    Log.e("에딧이벤트프래그먼트1",String.valueOf(cursor.getColumnName(1)).toString());
+                    Log.e("에딧이벤트프래그먼트2",String.valueOf(cursor.getColumnName(2)).toString());
+                    Log.e("에딧이벤트프래그먼트3",String.valueOf(cursor.getColumnName(3)).toString());
+                    Log.e("에딧이벤트프래그먼트4",String.valueOf(cursor.getColumnName(4)).toString());
+                    Log.e("에딧이벤트프래그먼트5",String.valueOf(cursor.getColumnName(5)).toString());*/
+
                     setModelIfDone(TOKEN_CALENDARS);
                     break;
                 case TOKEN_COLORS:
@@ -885,7 +934,18 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
                 default:
                     cursor.close();
                     break;
+
+
             }
+
+
+            /*Log.e("에딧 커서 겟 끝나고",String.valueOf(cursor.getCount()).toString());
+            Log.e("에딧이벤트프래그먼트0",String.valueOf(cursor.getColumnName(0)).toString());
+            Log.e("에딧이벤트프래그먼트1",String.valueOf(cursor.getColumnName(1)).toString());
+            Log.e("에딧이벤트프래그먼트2",String.valueOf(cursor.getColumnName(2)).toString());
+            Log.e("에딧이벤트프래그먼트3",String.valueOf(cursor.getColumnName(3)).toString());
+            Log.e("에딧이벤트프래그먼트4",String.valueOf(cursor.getColumnName(4)).toString());
+            Log.e("에딧이벤트프래그먼트5",String.valueOf(cursor.getColumnName(5)).toString());*/
         }
     }
 

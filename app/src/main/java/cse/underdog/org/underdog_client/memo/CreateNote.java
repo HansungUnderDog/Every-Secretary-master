@@ -52,10 +52,6 @@ public class CreateNote extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
 
-                    case R.id.ic_android:
-                        Intent intent1 = new Intent(CreateNote.this, TimelineActivity.class);
-                        startActivity(intent1);
-                        break;
 
                     case R.id.ic_books:
                         Intent intent2 = new Intent(CreateNote.this, AllInOneActivity.class);
