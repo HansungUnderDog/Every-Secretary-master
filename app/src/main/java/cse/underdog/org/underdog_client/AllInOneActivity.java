@@ -279,6 +279,14 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
             }, null, null /* selection args */, null /* sort order */);
         }
 
+        /*if (mCheckForAccounts
+                && !Utils.getSharedPreference(this, GeneralPreferences.KEY_SKIP_SETUP, false)) {
+            mHandler = new QueryHandler(this.getContentResolver());
+            mHandler.startQuery(0,null,, new String[]{
+                    Calendars._ID, Calendars.
+            },)
+        }*/
+
         // This needs to be created before setContentView
         mController = CalendarController.getInstance(this);
 
@@ -391,6 +399,8 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
 
         initFragments(timeMillis, viewType, icicle);
 
+
+
         // Listen for changes that would require this to be refreshed
         SharedPreferences prefs = GeneralPreferences.getSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -403,17 +413,12 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
 
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(1);
+        MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_android:
-                        Intent intent1 = new Intent(AllInOneActivity.this, TimelineActivity.class);
-                        startActivity(intent1);
-                        break;
-
                     case R.id.ic_books:
                         break;
 
@@ -809,9 +814,12 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
             // screen. Likewise for eventId
             mController.setViewType(viewType);
             mController.setEventId(eventId);
+
         } else {
             mPreviousView = viewType;
         }
+
+        //Log.e("이벤트타이틀이다",info.eventTitle.toString());
 
         setMainPane(ft, R.id.main_pane, viewType, timeMillis, true);
         ft.commit(); // this needs to be after setMainPane()
@@ -824,6 +832,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
         } else if (viewType != ViewType.EDIT) {
             mController.sendEvent(this, EventType.GO_TO, t, null, -1, viewType);
         }
+
     }
 
     @Override
@@ -1382,6 +1391,9 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                     }
                     ft.add(fragment, EVENT_INFO_FRAGMENT_TAG);
                     ft.commit();
+
+                    fragment.getEventId();
+                    //fragment.
                 }
             }
             displayTime = event.startTime.toMillis(true);
@@ -1391,6 +1403,8 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 refreshActionbarTitle(mController.getTime());
             }
         }
+
+
         updateSecondaryTitleFields(displayTime);
     }
 
@@ -1484,6 +1498,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 // If the query didn't return a cursor for some reason return
                 if (cursor == null || cursor.getCount() > 0 || isFinishing()) {
                     Log.i(TAG, "");
+                    Log.e("커리컴플릿", String.valueOf(cursor.getColumnNames()));
                     return;
                 }
             } finally {

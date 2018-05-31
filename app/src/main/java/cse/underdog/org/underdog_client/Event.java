@@ -222,6 +222,7 @@ public class Event implements Cloneable {
                     endDay, where, null, SORT_EVENTS_BY);
             cAllday = instancesQuery(context.getContentResolver(), EVENT_PROJECTION, startDay,
                     endDay, whereAllday, null, SORT_ALLDAY_BY);
+            Log.e("Event0", String.valueOf(cAllday.getColumnName(0)));
 
             // Check if we should return early because there are more recent
             // load requests waiting.

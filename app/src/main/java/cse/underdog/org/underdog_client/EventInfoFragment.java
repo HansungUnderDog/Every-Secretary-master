@@ -1432,6 +1432,7 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
             return;
         }
 
+
         Context context = view.getContext();
         if (context == null) {
             return;
@@ -2249,8 +2250,14 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
                 if (cursor != null) {
                     cursor.close();
                 }
+
                 return;
             }
+
+            Log.e("커서다0", String.valueOf(cursor.getColumnName(0).toString()));
+            Log.e("커서다1", String.valueOf(cursor.getColumnName(1).toString()));
+            Log.e("커서다2", String.valueOf(cursor.getColumnName(2).toString()));
+
 
             switch (token) {
                 case TOKEN_QUERY_EVENT:
@@ -2281,6 +2288,7 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
                     }
 
                     updateEvent(mView);
+                    Log.e("이벤트커서", String.valueOf(mEventCursor.getColumnNames()));
                     prepareReminders();
 
                     // start calendar query

@@ -166,16 +166,13 @@ public class TimelineActivity extends AppCompatActivity {
         layoutParams.setBehavior(new BottomNavigationViewBehavior());
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(6);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_android:
-
-                        break;
 
                     case R.id.ic_books:
                         Intent intent2 = new Intent(TimelineActivity.this, AllInOneActivity.class);
