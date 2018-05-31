@@ -83,6 +83,7 @@ import cse.underdog.org.underdog_client.CalendarController.EventInfo;
 import cse.underdog.org.underdog_client.CalendarController.EventType;
 import cse.underdog.org.underdog_client.CalendarController.ViewType;
 import cse.underdog.org.underdog_client.agenda.AgendaFragment;
+import cse.underdog.org.underdog_client.alarm.CallingService;
 import cse.underdog.org.underdog_client.etc.EtcActivity;
 import cse.underdog.org.underdog_client.memo.MemoActivity;
 import cse.underdog.org.underdog_client.month.MonthByWeekFragment;
@@ -258,15 +259,11 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
 
     @Override
     protected void onCreate(Bundle icicle) {
-        overridePendingTransition(0, 0);
         if (Utils.getSharedPreference(this, OtherPreferences.KEY_OTHER_1, false)) {
             setTheme(R.style.CalendarTheme_WithActionBarWallpaper);
         }
-        overridePendingTransition(0, 0);
         super.onCreate(icicle);
-        overridePendingTransition(0, 0);
         dynamicTheme.onCreate(this);
-        overridePendingTransition(0, 0);
 
         if (icicle != null && icicle.containsKey(BUNDLE_KEY_CHECK_ACCOUNTS)) {
             mCheckForAccounts = icicle.getBoolean(BUNDLE_KEY_CHECK_ACCOUNTS);

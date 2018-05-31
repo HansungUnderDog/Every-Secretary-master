@@ -38,6 +38,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:text="stt시작" />
+        android:text="음성인식 시작" />
 
 </RelativeLayout>

@@ -1,10 +1,13 @@
 package cse.underdog.org.underdog_client.login;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import cse.underdog.org.underdog_client.AllInOneActivity;
 import cse.underdog.org.underdog_client.LoginUserInfo;
 import cse.underdog.org.underdog_client.R;
+import cse.underdog.org.underdog_client.alarm.CallingService;
 import cse.underdog.org.underdog_client.application.ApplicationController;
 import cse.underdog.org.underdog_client.guide.GuideActivity;
 import cse.underdog.org.underdog_client.network.NetworkService;
@@ -29,11 +33,15 @@ public class SplashActivity extends AppCompatActivity {
 
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 5469;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+
+        testPermission();
 
         service = ApplicationController.getInstance().getNetworkService();
 
@@ -65,6 +73,15 @@ public class SplashActivity extends AppCompatActivity {
         handler.sendEmptyMessageDelayed(0, 3000);
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public void testPermission() {
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+        }
+    }
+
     public void checkLogin(String email, String pwd) {
         LoginInfo info = new LoginInfo(email, pwd);
         //회원 체크
@@ -86,6 +103,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
                         Intent intent = new Intent(getBaseContext(), AllInOneActivity.class);
+                        finish();
 
 
                         //activity stack 비우고 새로 시작하기
@@ -130,5 +148,19 @@ public class SplashActivity extends AppCompatActivity {
 
         Log.w("Layout Width - ", String.valueOf(layoutMainView.getWidth()));
         Log.w("Layout Height - ", String.valueOf(layoutMainView.getHeight()));
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
+            if (Settings.canDrawOverlays(this)) {
+                // You have permission
+                Intent serviceIntent = new Intent(
+                        getApplicationContext(),//현재제어권자
+                        CallingService.class); // 이동할 컴포넌트
+                startService(serviceIntent);
+            }
+        }
     }
 }

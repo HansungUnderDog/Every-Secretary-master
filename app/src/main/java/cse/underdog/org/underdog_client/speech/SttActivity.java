@@ -42,7 +42,9 @@ public class SttActivity extends AppCompatActivity implements RecognitionListene
         returnedText = (TextView) findViewById(R.id.textView1);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton1);
-
+        toggleButton.setText("음성인식 시작");
+        toggleButton.setTextOn("음성인식 시작");
+        toggleButton.setTextOff("음성인식 시작");
 
 
         progressBar.setVisibility(View.INVISIBLE);
