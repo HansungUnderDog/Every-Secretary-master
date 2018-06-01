@@ -93,9 +93,6 @@ public class EtcActivity extends AppCompatActivity{
     @BindView(R.id.imageView)
     ImageView musicButton;
 
-    @BindView(R.id.imageView4)
-    ImageView memoButton;
-
     @BindView(R.id.imageView2)
     ImageView weatherButton;
 

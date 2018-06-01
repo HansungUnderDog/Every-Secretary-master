@@ -109,7 +109,9 @@ public class CallingService extends Service{
         windowManager.addView(rootView, params);
         setExtra(intent);
         if (!TextUtils.isEmpty(call_number)) {
-            tv_call_number.setText(call_number);
+            tv_call_number.setText("배태환\n" +
+                    "오전 9시 소프트웨어의 이해\n" +
+                    "오후 2시 캡스톤 디자인");
         }
 
         return START_REDELIVER_INTENT;
